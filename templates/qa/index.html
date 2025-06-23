@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>질문</title>
+</head>
+<body>
+    <h1>AI로 질문하기</h1>
+    <form method = 'POST' id = 'aq-form'>
+        {% csrf_token %}
+        <textarea name = 'question' rows='5'placeholder='질문을 입력하세요'></textarea>
+        <button type = 'submit'>질문하기</button>
+    </form>
+    <div id = 'loading' style = 'display: none; text-align: conter; margin-top: 20px;'>
+        <img src = 'https://i.stack.imgur.com/kOnzy.gif' alt="생각중" width="48" height="48">
+        <p>AI가 답변을 생성 중입니다.</p>
+    </div>
+    <script>
+        document.getElementById('qa-form').addEventListener('submit', function(){
+            document.getElementById('loading').style.display = 'block';
+        })
+    </script>
+    {% if answer %}
+    <h2>답변:</h2>
+    <p>{{ answer }}</p>
+    {% endif %}
+</body>
+</html>
